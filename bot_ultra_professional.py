@@ -147,10 +147,10 @@ def button_handler(update, context):
 
         context.bot.send_message(chat_id=OWNER_CHAT_ID, text=owner_msg)
 
-        query.message.reply_text(
-            "✅ Prenotazione registrata! Ti contatteremo presto.",
-            reply_markup=main_menu()
-        )
+     query.message.reply_text(
+    "Seleziona orario:",
+    reply_markup=time_menu(selected_date)
+)
 
         user_states[chat_id] = "menu"
 
