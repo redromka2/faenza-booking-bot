@@ -13,7 +13,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # ENV VARIABLES
 # =============================
 
-TOKEN = os.getenv("TOKEN")
+TOKEN = os.getenv("8671701804:AAHEAY0o1pNfAALdYbylZOdHWOxitOHr9Yk")
 OWNER_CHAT_ID = int(os.getenv("OWNER_CHAT_ID", "1130114131"))
 SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")
 GOOGLE_CREDENTIALS = os.getenv("GOOGLE_CREDENTIALS")
