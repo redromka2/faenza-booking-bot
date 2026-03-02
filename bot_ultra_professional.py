@@ -5,8 +5,7 @@ from telegram.ext import Updater, CommandHandler, CallbackQueryHandler, MessageH
 from datetime import datetime, timedelta
 import csv
 import os
-
-TOKEN = "8671701804:AAHEAY0o1pNfAALdYbylZOdHWOxitOHr9Yk"
+TOKEN = os.getenv("TOKEN")
 OWNER_CHAT_ID = 1130114131
 
 user_states = {}
