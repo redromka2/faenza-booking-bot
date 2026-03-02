@@ -54,20 +54,37 @@ def date_menu():
         [InlineKeyboardButton("Dopodomani", callback_data="dopodomani")]
     ])
 
-def time_menu():
-    return InlineKeyboardMarkup([
-        [InlineKeyboardButton("09:00", callback_data="09:00"),
-         InlineKeyboardButton("10:00", callback_data="10:00"),
-         InlineKeyboardButton("11:00", callback_data="11:00")],
-        [InlineKeyboardButton("14:00", callback_data="14:00"),
-         InlineKeyboardButton("15:00", callback_data="15:00"),
-         InlineKeyboardButton("16:00", callback_data="16:00")]
-    ])
+def time_menu(selected_date):
+    times = ["09:00","10:00","11:00","12:00","13:00","14:00","15:00","16:00","17:00"]
+    records = sheet.get_all_records()
 
-# =============================
-# START
-# =============================
+    busy_times = [
+        r["Orario"]
+        for r in records
+        if r["Data"] == selected_date
+    ]
 
+    keyboard = []
+    row = []
+
+    for t in times:
+        if t in busy_times:
+            row.append(
+                InlineKeyboardButton(f"❌ {t}", callback_data="busy")
+            )
+        else:
+            row.append(
+                InlineKeyboardButton(t, callback_data=t)
+            )
+
+        if len(row) == 3:
+            keyboard.append(row)
+            row = []
+
+    if row:
+        keyboard.append(row)
+
+    return InlineKeyboardMarkup(keyboard)
 def start(update, context):
     update.message.reply_text(
         "Benvenuto 👋\nSistema professionale di prenotazione.",
